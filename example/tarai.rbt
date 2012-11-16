@@ -1,0 +1,24 @@
+
+def tarai( x, y, z )
+	$loop_count += 1
+	if y < x then
+		return tarai(
+			tarai( x - 1, y, z ),
+			tarai( y - 1, z, x ),
+			tarai( z - 1, x, y ) )
+	end
+	return y
+end
+
+$loop_count = 0
+
+x = ARGV[0].class == String ? ARGV[0].to_i : 10
+y = ARGV[1].class == String ? ARGV[1].to_i : 5
+z = ARGV[2].class == String ? ARGV[2].to_i : 0
+
+puts( tarai( x, y, z ) )
+#puts( tarai( 1, 0, 11 ) )
+#puts( tarai( 12, 6, 0 ) )
+puts( $loop_count )
+
+

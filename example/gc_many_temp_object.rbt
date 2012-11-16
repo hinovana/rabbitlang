@@ -1,0 +1,35 @@
+''' ------------------------------------------------------------------
+	GC TEST -- many temporary object
+---------------------------------------------------------------------- '''
+
+class Hoge
+	def hoge()
+		100.times do |n|
+			a = Array.new
+			a.push( String.new("yahho") )
+		end
+	end
+end
+
+def long_long_func()
+	10000.times do |n|
+		arr = Array.new
+		arr.push( Array.new().push( Hoge.new.hoge ) )
+	end
+
+	puts( "GC count .. ",       GC.work_count,
+		"  Alloc total .. ",      GC.alloc_total, "(byte)",
+		"  Object.new total .. ", GC.peak_object )
+
+	return String.new("hello world")
+end
+
+a = Array.new.push(
+	long_long_func(),
+	long_long_func(),
+	long_long_func(),
+	long_long_func(),
+	long_long_func(),
+	long_long_func() )
+
+puts(a)

@@ -1,0 +1,23 @@
+class MyArray
+	def initialize()
+		@arr = Array.new()
+	end
+
+	def []=(x,y)
+		return @arr[x] = y
+	end
+
+	def [](x)
+		return @arr[x]
+	end
+end
+
+myarr = MyArray.new
+myarr[0] = "hello "
+myarr[1] = "world"
+puts( myarr[0], myarr[1] ) #=> hello world
+
+''' ------------------------------------------------------------------
+	Array emulate class
+---------------------------------------------------------------------- '''
+

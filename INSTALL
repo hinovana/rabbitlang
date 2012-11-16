@@ -1,0 +1,23 @@
+How to install?
+===============
+
+dependencies
+------------
+ * GCC
+ * GNU Make
+ * bison
+ * flex
+
+install
+-------
+ * please run
+	mkdir __build__
+	cd __build__
+	../configure
+	make
+
+hello world
+-------
+ * please run
+	./src/rabbit ../examle/helloworld.rbt
+

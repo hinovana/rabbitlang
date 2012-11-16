@@ -1,0 +1,18 @@
+''' ------------------------------------------------------------------
+	Rabbit Class methods
+---------------------------------------------------------------------- '''
+puts( "Object class methods ..", Object.methods )
+puts( "Class class methods .. ", Class.methods )
+puts( "Kernel class methods .. ", Kernel.methods )
+puts( "Array class methods .. ", Array.methods )
+puts( "Array class instance methods .. ", [].methods )
+puts( "String class methods .. ", String.methods )
+puts( "String class instance methods .. ", "".methods )
+puts( "Fixnum class methods .. ", Fixnum.methods )
+puts( "Fixnum class instance methods .. ", 1.methods )
+puts( "Numeric class methods .. ", Numeric.methods )
+puts( "TRUE class methods .. ",  TRUE.methods )
+puts( "TRUE class instance methods .. ",  true.methods )
+puts( "FALSE class methods .. ", FALSE.methods )
+puts( "FALSE class instance methods .. ",  false.methods )
+

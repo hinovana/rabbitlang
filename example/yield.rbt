@@ -1,0 +1,23 @@
+
+def myeach( arr )
+	if !block_given? then
+		puts( "ブロックをください！" )
+		return
+	end
+	i = 0 
+	while i < arr.len do
+		yield( arr[i] )
+		i += 1
+	end
+	puts( "end" )
+end
+
+myeach( [1,2,3] )
+
+myeach( [1,2,3] ) do |i|
+	puts( i )
+end
+
+
+
+

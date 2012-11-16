@@ -1,0 +1,48 @@
+''' ------------------------------------------------------------------
+	無駄に継承したクラスを使って書く竹内関数
+	(10,5,0)以上にすると多分スワップ発生します。
+	--
+	GC導入したので、きっとメモリリークしなくなりました
+----------------------------------------------------------------------- '''
+
+
+# x y zの数を管理するだけのクラス
+class XYZ
+	def initialize( x, y, z )
+		@x = x
+		@y = y
+		@z = z
+	end
+end
+
+## XYZクラスを継承した、竹内関数の本体を持つクラス
+class Tak < XYZ
+	def tarai()
+#		$loop_count += 1
+		if @y < @x then
+			Tak.new(
+				Tak.new( @x - 1, @y, @z ).tarai,
+				Tak.new( @y - 1, @z, @x ).tarai,
+				Tak.new( @z - 1, @x, @y ).tarai ).tarai
+		else
+			@y
+		end
+	end
+end
+
+## 竹内関数クラスを継承した、竹内関数を実行するクラス
+class Benchmark < Tak
+	def start()
+		self.tarai()
+	end
+end
+
+#$loop_count = 0
+#puts( Benchmark.new( 1, 0, 11).start )
+puts( Benchmark.new( 10, 5, 0).start )
+#puts( Benchmark.new( 12, 6, 0).start )
+#puts( $loop_count )
+puts( "GC#peak_object .. ", GC.peak_object )
+puts( "GC#work_count .. ", GC.work_count )
+puts( "GC#alloc_total .. ", GC.alloc_total )
+

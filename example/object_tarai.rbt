@@ -1,0 +1,29 @@
+class Tak
+	def initialize( x, y, z )
+		@x = x
+		@y = y
+		@z = z
+	end
+
+	def tarai()
+		$loop_count += 1
+		if @y < @x then
+			Tak.new(
+				Tak.new( @x - 1, @y, @z ).tarai,
+				Tak.new( @y - 1, @z, @x ).tarai,
+				Tak.new( @z - 1, @x, @y ).tarai ).tarai
+		else
+			@y
+		end
+	end
+end
+
+$loop_count = 0
+#puts( Tak.new( 1, 0, 11).tarai )
+puts( Tak.new( 10, 5, 0).tarai )
+#puts( Benchmark.new( 12, 6, 0).start )
+puts( $loop_count )
+
+puts( "GC count .. ",       GC.work_count,
+	"  Alloc total .. ",      GC.alloc_total, "(byte)",
+	"  Object.new total .. ", GC.peak_object )

@@ -1,0 +1,79 @@
+''' ----------------------------------------------------------------------------
+	マージソート - Wikipedia
+	http://ja.wikipedia.org/wiki/%E3%83%9E%E3%83%BC%E3%82%B8%E3%82%BD%E3%83%BC%E3%83%88
+-------------------------------------------------------------------------------- '''
+
+class Array
+	def my_msort!()
+		self.__my_msort__( 0, self.length - 1 )
+		return self
+	end
+
+	def __my_msort__( left, right )
+		if left >= right then
+			return
+		end
+
+		mid = (left+right) / 2
+
+		self.__my_msort__( left, mid )
+		self.__my_msort__( mid + 1, right )
+		
+		temp = []
+		i = left
+
+		while i <= mid do
+			temp[ i ] = self[ i ]
+			i+=1
+		end
+		
+		i = mid+1
+		ii = right
+
+		while i <= right do
+			temp[ i ] = self[ ii ]
+			ii -= 1
+			i  += 1
+		end
+		
+		i = left
+		ii = right
+		iii = left
+		
+		while iii <= right do
+			$swap_count+=1
+			if temp[i] <= temp[ii] then
+				self[iii] = temp[i]
+				i+=1
+			else
+				self[iii] = temp[ii]
+				ii-=1
+			end
+			iii+=1
+		end
+	end
+end
+
+
+arr = []
+
+## ランダムな整数の配列を生成する。
+100.times do
+	arr.push( random(0,1000) )
+end
+
+$swap_count = 0
+
+print( "array len .. ", arr.len, "\n" );
+puts( arr )
+
+print( "** marge sort **\n" )
+
+arr.my_msort!
+
+print( "array len .. ", arr.len, "\n" );
+print( "min .. ", arr[0], "\n" );
+print( "max .. ", arr[arr.len-1], "\n" );
+print( "swap count .. " + $swap_count.to_s(10) + "\n" )
+puts( arr )
+

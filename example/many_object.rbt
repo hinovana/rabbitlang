@@ -1,0 +1,43 @@
+class HogeC
+	def initialize()
+		@arr = Array.new
+	end
+	def piyo( obj )
+		@arr.push(obj)
+	end
+end
+
+def HogeF()
+	i = 0
+	hoge = HogeC.new
+	a = Array.new()
+	while i < 1000 do
+		a.push(HogeC.new)
+		a.push(hoge)
+		a.push(a)
+		hoge.piyo(a)
+		i+=1
+	end
+	false
+end
+
+i = 0
+while i < 20000 do
+	HogeF()
+	puts( "i .. ", i,
+		"  GC count .. ",     GC.work_count,
+		"  Alloc total .. ",  GC.alloc_total, "(byte)",
+		"  Object.new total .. ", GC.peak_object )
+	i+=1
+end
+
+# i .. 807  GC count .. 2654  Alloc total .. 1072006897(byte)  Object.new total .. 1618513
+# i .. 808  GC count .. 2658  Alloc total .. 1073333629(byte)  Object.new total .. 1620516
+
+# fixint overflow
+# i .. 809  GC count .. 2661  Alloc total .. -1072823287(byte)  Object.new total .. 1622519
+# i .. 810  GC count .. 2664  Alloc total .. -1071496555(byte)  Object.new total .. 1624522
+
+
+
+

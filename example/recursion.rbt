@@ -1,0 +1,15 @@
+''' ------------------------------------------------------------------
+	再帰 - Wikipedia
+	http://ja.wikipedia.org/wiki/%E5%86%8D%E5%B8%B0
+---------------------------------------------------------------------- '''
+
+$loop_count = 0
+
+def loopfunc( min, max )
+	$loop_count += 1
+	( min < max ) ? loopfunc( min+1, max ) : min
+end
+
+puts( loopfunc(0,10000) )
+puts( $loop_count )
+
